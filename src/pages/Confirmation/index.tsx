@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, View, KeyboardAvoidingView } from 'react-native';
-import Emoji from 'react-native-emoji';
+import React from 'react';
+import { SafeAreaView, Text, View } from 'react-native';
 
 import { Button } from '../../components/Button';
 
@@ -23,7 +22,7 @@ export function Confirmation(){
         </Text>
 
         <View style={styles.footer}>
-          <Button /> 
+          <Button title="Get started" /> 
         </View>
       </View>
     </SafeAreaView>

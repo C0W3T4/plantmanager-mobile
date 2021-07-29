@@ -2,11 +2,9 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 
-import { useFonts, Jost_400Regular, Jost_600SemiBold } from '@expo-google-fonts/jost';
+import Routes from './src/routes';
 
-import { Welcome } from './src/pages/Welcome';
-import { UserIdentification } from './src/pages/UserIdentification';
-import { Confirmation } from './src/pages/Confirmation';
+import { useFonts, Jost_400Regular, Jost_600SemiBold } from '@expo-google-fonts/jost';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -19,9 +17,7 @@ export default function App() {
 
   return (
     <>
-      {/* <Welcome /> */}
-      {/* <UserIdentification /> */}
-      <Confirmation />
+      <Routes />
       <StatusBar style="auto" />
     </>
   );
