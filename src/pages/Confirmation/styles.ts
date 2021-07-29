@@ -6,55 +6,43 @@ import fonts from '../../styles/fonts';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
     alignItems: 'center',
     justifyContent: 'space-around',
   },
 
   content: {
     flex: 1,
-    width: '100%',
-  },
-
-  form: {
-    flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 54,
     alignItems: 'center',
-  },
-
-  header: {
-    alignItems: 'center',
+    width: '100%',
+    padding: 30,
   },
 
   emoji: {
-    fontSize: 44,
+    fontSize: 78,
   },
 
   title: {
-    fontSize: 24,
-    lineHeight: 32,
+    fontSize: 22,
+    lineHeight: 38,
     textAlign: 'center',
     color: colors.heading,
     fontFamily: fonts.heading,
-    marginTop: 20,
+    marginTop: 15,
   },
 
-  input: {
-    borderBottomWidth: 1,
-    borderColor: colors.gray,
-    color: colors.heading,
-    width: '100%',
-    fontSize: 18,
-    marginTop: 50,
-    padding: 10,
+  subtitle: {
+    fontFamily: fonts.text,
     textAlign: 'center',
+    fontSize: 17,
+    paddingVertical: 10,
+    color: colors.heading,
   },
 
   footer: {
     width: '100%',
-    marginTop: 40,
-    paddingHorizontal: 20,
+    paddingHorizontal: 50,
+    marginTop: 20,
   },
 });
 
