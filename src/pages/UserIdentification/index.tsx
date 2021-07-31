@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { 
+  SafeAreaView, 
+  Text, 
+  TextInput, 
+  View, 
+  KeyboardAvoidingView, 
+  TouchableWithoutFeedback, 
+  Keyboard, 
+  Alert 
+} from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import Emoji from 'react-native-emoji';
 
@@ -7,6 +16,7 @@ import { Button } from '../../components/Button';
 
 import colors from '../../styles/colors';
 import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function UserIdentification(){
   const [isFocused, setIsFocused] = useState(false);
@@ -15,7 +25,12 @@ export function UserIdentification(){
 
   const navigation = useNavigation();
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if(!name)
+      return Alert.alert("Why don't you tell me your name? 😢");
+
+    await AsyncStorage.setItem('@plantmanager:user', name);
+    
     navigation.navigate('Confirmation');
   }
 

@@ -4,12 +4,13 @@ import { SafeAreaView, Text, View, FlatList, ActivityIndicator } from 'react-nat
 import { Header } from '../../components/Header';
 import { EnvironmentButton } from '../../components/EnvironmentButton';
 import { Load } from '../../components/Load';
+import { PlantCardPrimary } from '../../components/PlantCardPrimary';
 
 import api from '../../services/api';
 
 import styles from './styles';
-import { PlantCardPrimary } from '../../components/PlantCardPrimary';
 import colors from '../../styles/colors';
+import { useNavigation } from '@react-navigation/native';
 
 interface EnvironmentProps {
   key: string;
@@ -35,10 +36,10 @@ export function PlantSelect(){
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
-
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [loadedAll, setLoadedAll] = useState(false);
+
+  const navigation = useNavigation();
 
   async function fetchPlants() {
     const { data } = await api.get(`plants?_sort=name&_order=asc&_page=${page}&_limit=6`);
@@ -69,6 +70,10 @@ export function PlantSelect(){
     );
 
     setFilteredPlants(filtered);
+  }
+
+  function handlePlantSelected(plant: PlantProps) {
+    navigation.navigate('PlantSave', { plant });
   }
 
   function handleFetchMore(distance: number) {
@@ -117,6 +122,7 @@ export function PlantSelect(){
       <View>
         <FlatList
           data={environments}
+          keyExtractor={(item) => String(item.key)}
           renderItem={({ item }) => (
             <EnvironmentButton 
               title={item.title}
@@ -133,9 +139,11 @@ export function PlantSelect(){
       <View style={styles.plants}>
         <FlatList
           data={filteredPlants}
+          keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
             <PlantCardPrimary 
               data={item}
+              onPress={() => handlePlantSelected(item)}
             />
           )}
           numColumns={2}
